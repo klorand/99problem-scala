@@ -94,3 +94,20 @@ object P06 {
   }
 }
 
+object P07 {
+
+  def flatten(l: List[Any]): List[Any] = l match {
+    case Nil => Nil
+    case (x:List[Any]) :: xs => flatten(x) ::: flatten(xs)
+    case x :: xs => x :: flatten(xs)
+  }
+
+  def flattenFold(l: List[Any]):List[Any] = l.foldLeft[List[Any]](Nil)( (it,current) => current match {
+    case Nil => it
+    case x:List[Any] => flattenFold(x) ::: it
+    case x => x :: it
+  } )
+
+
+}
+
