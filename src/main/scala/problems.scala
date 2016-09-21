@@ -111,3 +111,12 @@ object P07 {
 
 }
 
+object P08 {
+
+  def compress[A](l:List[A]): List[A] = l match  {
+    case x :: y :: xs if x == y => compress(y :: xs)
+    case x :: xs => x :: compress(xs)
+    case Nil => Nil
+  }
+}
+
