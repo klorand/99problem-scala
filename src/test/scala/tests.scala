@@ -39,3 +39,23 @@ class P11Spec extends PropSpec
   }
 
 }
+
+class P12Spec extends PropSpec
+  with PropertyChecks
+  with Matchers  {
+
+  property("#rleDecode works on sample input") {
+    assert(
+      P12.rleDecode(List((4, 'a), (1, 'b), (2, 'c), (2, 'a), (1, 'd), (4, 'e)))
+        === List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)
+    )
+  }
+
+  property("#rleDecode is the inverse of rle") {
+    forAll { (a: List[String]) =>
+      assert(P12.rleDecode(P10.rle(a)) === a)
+    }
+  }
+
+}
+

@@ -144,6 +144,14 @@ object P11 {
         })
 }
 
+object P12 {
+  def rleDecode[A](l: List[(Int,A)]): List[A] = l match {
+    case (nr,elem) :: xs => List.fill(nr)(elem) ::: rleDecode(xs)
+    case Nil => Nil
+  }
+}
+
+
 
 
 
