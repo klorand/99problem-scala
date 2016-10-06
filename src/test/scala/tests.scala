@@ -59,3 +59,21 @@ class P12Spec extends PropSpec
 
 }
 
+class P13Spec extends PropSpec
+  with PropertyChecks
+  with Matchers  {
+
+  property("#rle works on sample input") {
+    assert(P13.rleDirect(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)) 
+      === List((4,'a), (1,'b), (2,'c), (2,'a), (1,'d), (4,'e)))
+  }
+
+  property("#rle returned list has basically the same elements as the original if you sum up the numbers") {
+    forAll { (a: List[Int]) =>
+      assert(P13.rleDirect(a).map( _._1).sum === a.size)
+    }
+  }
+
+}
+
+

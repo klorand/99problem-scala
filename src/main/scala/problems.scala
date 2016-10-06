@@ -155,6 +155,16 @@ object P12 {
   }
 }
 
+object P13 {
+  def rleDirect[A](l:List[A]): List[(Int,A)] = l match {
+    case x :: xs => {
+      val (allX,rest) = xs.span({_ == x})
+      (allX.size + 1, x) :: rleDirect(rest)
+    }
+    case Nil => Nil
+  }
+}
+
 
 
 
