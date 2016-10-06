@@ -149,6 +149,10 @@ object P12 {
     case (nr,elem) :: xs => List.fill(nr)(elem) ::: rleDecode(xs)
     case Nil => Nil
   }
+
+  def rleDecodeFlatMap[A](l: List[(Int,A)]): List[A] = l.flatMap {
+    case (nr,elem) => List.fill(nr)(elem)
+  }
 }
 
 
