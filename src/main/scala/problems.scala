@@ -120,3 +120,21 @@ object P08 {
   }
 }
 
+object P09 {
+
+  def pack[A](l:List[A]): List[List[A]] = l match  {
+    case x :: y :: xs if x == y => {
+      val rest =  pack(y :: xs)
+      (x :: rest.head) :: rest.tail
+    }
+    case x :: xs => List(x) :: pack(xs)
+    case Nil => Nil
+  }
+}
+
+object P10 {
+  def rle[A](l: List[A]): List[(Int,A)] = P09.pack(l).map( l=> (l.size, l.head))
+}
+
+
+
