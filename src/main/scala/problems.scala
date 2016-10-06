@@ -136,5 +136,14 @@ object P10 {
   def rle[A](l: List[A]): List[(Int,A)] = P09.pack(l).map( l=> (l.size, l.head))
 }
 
+object P11 {
+  def rleModified[A](l: List[A]): List[Either[(Int,A),A]] =
+        P10.rle(l).map({
+          case (1,a) => Right(a)
+          case (nr,elem) => Left((nr,elem))
+        })
+}
+
+
 
 
