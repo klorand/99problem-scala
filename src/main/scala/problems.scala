@@ -165,6 +165,23 @@ object P13 {
   }
 }
 
+object P14 {
+  def duplicate[A](l:List[A]): List[A] = l match {
+    case x :: xs => x :: x :: duplicate(xs)
+    case Nil => Nil
+  }
+}
+
+object P15 {
+  def duplicateN[A](nr:Int, l:List[A]): List[A] = l match {
+    case x :: xs => List.fill(nr)(x) ::: duplicateN(nr,xs)
+    case Nil => Nil
+  }
+
+  def duplicatenN_FlatMap[A](nr:Int, l:List[A]): List[A] = l.flatMap( x => List.fill(nr)(x)  )
+}
+
+
 
 
 
