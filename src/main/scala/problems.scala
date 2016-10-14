@@ -181,6 +181,13 @@ object P15 {
   def duplicatenN_FlatMap[A](nr:Int, l:List[A]): List[A] = l.flatMap( x => List.fill(nr)(x)  )
 }
 
+object P16 {
+  def dropN[A](nr:Int, l:List[A]): List[A] = l match {
+    case xs if xs.size >= nr => xs.take(nr-1) ::: dropN(nr,xs.drop(nr))
+    case xs => xs
+  }
+}
+
 
 
 

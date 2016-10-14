@@ -111,4 +111,21 @@ class P15Spec extends PropSpec
 
 }
 
+class P16Spec extends PropSpec
+  with PropertyChecks
+  with Matchers  {
+
+  property("#dropN works on sample input") {
+    assert(P16.dropN(3,List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k))
+      === List('a, 'b, 'd, 'e, 'g, 'h, 'j, 'k))
+  }
+
+  property("#duplicateN has every N element missing in size") {
+    forAll { (a: List[Int]) =>
+      assert(P16.dropN(3,a).size === a.size - (a.size / 3) )
+    }
+  }
+
+}
+
 
