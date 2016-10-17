@@ -188,6 +188,10 @@ object P16 {
   }
 }
 
+object P17 {
+  def split[A](at:Int, l:List[A]): (List[A],List[A]) = l.splitAt(at)
+}
+
 
 
 
