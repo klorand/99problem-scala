@@ -189,7 +189,15 @@ object P16 {
 }
 
 object P17 {
-  def split[A](at:Int, l:List[A]): (List[A],List[A]) = l.splitAt(at)
+  def split[A](at:Int, l:List[A]): (List[A],List[A]) = {
+    @tailrec
+    def internalSplit(t:(Int,List[A],List[A])): (List[A], List[A]) = t match {
+      case (0, a, b) => (a.reverse,b)
+      case (_,a,Nil) => (a.reverse,Nil)
+      case (nr, xs, y::last) => internalSplit(nr-1, y::xs, last)
+    }
+    internalSplit(at, Nil, l)
+  }
 }
 
 
